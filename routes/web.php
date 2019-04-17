@@ -16,6 +16,15 @@ Route::get('/', function () {
 });
 
 Route::get('/portfolio', function () {
-    return view('portfolio');
+    return view('portfolio.portfolio');
+});
+
+Route::get('/portfolio', function () {
+    return view('portfolio/portfolio');
+});
+
+
+Route::get('/mdb', function () {
+    return view('mdb/mdb');
 });
 
