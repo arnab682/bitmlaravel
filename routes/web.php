@@ -25,6 +25,6 @@ Route::get('/portfolio', function () {
 
 
 Route::get('/mdb', function () {
-    return view('mdb/mdb');
+    return view('mdb/mdb')->with('A', 2);
 });
 

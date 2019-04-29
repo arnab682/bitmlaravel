@@ -1,3 +1,47 @@
+<?php
+function makeGreeting($name, $timeOfDay){
+ return "Hello! ".$timeOfDay." ". $name."!";
+}
+  
+echo makeGreeting("Omran","Good Morning");
+//Result: Good Morning Omran!
+?>
+<?php
+// Assign an anonymous function to a variable
+$makeGreeting = function( $name, $timeOfDay ) {
+  return "Good $timeOfDay, $name!";
+};
+echo $makeGreeting("Omran","Morning"); 
+//Result: Good Morning Omran!
+?>
+<hr>
+<?php
+    function md($name, $time){
+        return "$name $time<br>";
+    }
+    echo md("Hello!","Boys");
+
+     $ma = function($name,$time){
+        return "$name $time";  
+    };
+
+    echo $ma("Hello...","Girls");
+   
+?>
+<hr>
+<?php
+  
+    // Pass Lambda to function
+    function shout ($message){
+      echo $message();
+    }
+      
+    // Call function
+    shout(function(){
+      return "Hello world";
+    });
+?>
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
