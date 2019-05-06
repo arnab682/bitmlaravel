@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 use Carbon\Carbon;
 
-$factory->define(\App\Student::class, function (Faker $faker) {
+$factory->define(App\Student::class, function (Faker $faker) {
     return [
         //
         'firstname'            => $faker->firstName,
