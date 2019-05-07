@@ -33,7 +33,15 @@ class HomeController extends Controller
         //$objProfile  = (object) $profile;
         //dd($profile);
         //var_dump($profile->firstname);
-        return view("home.details")->with('profiles', $profile);
+        return view("home.details")->with('profile', $profile);
+    }
+
+    function create(){
+        return view("home.create");
+    }
+
+    function edit(){
+        return view("home.edit");
     }
 
     function lol(){

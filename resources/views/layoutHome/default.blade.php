@@ -43,8 +43,8 @@
 		</div>
 
 	</div>
-
+@include('elements/scripts')
 </body>
 </html>
 
-@include('elements/scripts')
+

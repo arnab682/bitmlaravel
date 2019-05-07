@@ -6,6 +6,9 @@
 
    <h1>Table Data</h1>
 
+   
+   <button type="button" class="btn btn-outline-success"><a href="/profile/create">Add New</a></button>
+
    <table class="table table-bordered" style="text-align: center;">
 		<tr>
 	        <th>Sl.</th>
@@ -25,11 +28,15 @@
 				{{$profile['firstname']}} {{$profile['lastname']}}</a></td>
 			<td><a href="/profile/lol/{{$profile['id']}}">{{$profile['gender']}}</a></td>
 			<td>{{$profile['zipcode']}}</td>
-			<td>Edit | Delete</td>
+			<td><a href="/profile/edit/{{$profile['id']}}">Edit</a> | 
+				<a href="">Delete</a></td>
 		</tr>
 
 		@endforeach
 	</table>
 @endsection
 
+@section('sidebar')
+    n/a
+@endsection
 
