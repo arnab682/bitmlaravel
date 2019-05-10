@@ -15,17 +15,17 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('firstname')->default('Arnab');
+            $table->string('lastname')->default('Das');
             $table->string('gender')->default('Male');
             $table->string('hobby')->nullable();
-            $table->string('preferred_languages');//json
-            $table->string('address_line');
-            $table->string('zipcode');
-            $table->string('city');
-            $table->string('country');
-            $table->text('about_me');
-            $table->string('resume');
+            $table->string('preferred_languages')->nullable();//json
+            $table->string('address_line')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->text('about_me')->nullable();
+            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

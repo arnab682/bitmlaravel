@@ -16,7 +16,6 @@ $factory->define(\App\Profile::class, function (Faker $faker) {
         'country'       => $faker->country,
         'about_me'       => $faker->text(),
         'resume'       => $faker->word,
-        'picture'       => $faker->word,
         'created_at' => Carbon::now()->toDateTimeString(),
         'updated_at' => Carbon::now()->toDateTimeString(),
     ];
