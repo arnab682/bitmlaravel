@@ -15,7 +15,21 @@ class HomeController extends Controller
         return view("home.home");
     }
 
-    function profile(){
+    function store(){
+        $profile = new Profile();
+        $profile->firstname = $_GET['firstname'];
+        $profile->lastname = $_GET['lastname'];
+        $profile->gender   = $_GET['gender'];
+        $profile->zipcode  = $_GET['zipcode'];
+        $result = $profile->save();
+        //die('lol');
+        //var_dump($result);
+        //dd($result);
+        return redirect("profile");
+        
+    }
+
+    function index(){
         $profiles =   Profile::all();
     	return view("home.profile")->with("profiles", $profiles);
     }
@@ -28,7 +42,7 @@ class HomeController extends Controller
     	return view("home.contact");
     }
 
-    function details($id){
+    function show($id){
         $profile  =  Profile::find($id);
         //$objProfile  = (object) $profile;
         //dd($profile);
