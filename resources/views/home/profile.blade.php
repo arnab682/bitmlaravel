@@ -34,6 +34,12 @@
 
 		@endforeach
 	</table>
+
+	<div class="">
+		{{ $profiles->links()}}
+	</div>
+
+
 @endsection
 
 @section('sidebar')

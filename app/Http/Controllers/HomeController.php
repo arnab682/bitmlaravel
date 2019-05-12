@@ -31,8 +31,24 @@ class HomeController extends Controller
 
     function index(){
         $profiles =   Profile::all();
-    	return view("home.profile")->with("profiles", $profiles);
+        $profiles =   Profile::paginate(8);
+    	//return view("home.profile")->with("profiles", $profiles);
+        return view('home.profile', ['profiles' => $profiles]);
+        //return view('customers.index',    ['customers' => $customers]);
     }
+
+    public function showAllCustomers()
+    {
+        // $customers = Customer::where('age','>=',34)
+        //                         ->where('type',"=",1)
+        //                         ->orderBy('age')
+        //                         ->take(1)
+        //                         ->get();
+        $profile = Profile::paginate(8);
+        return view('home.profile',
+                    ['profile' => $profile]);
+    }
+
 
     function about(){
     	return view("home.about");

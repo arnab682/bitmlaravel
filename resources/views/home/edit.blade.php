@@ -4,28 +4,64 @@
 
 	<h2>Create Form :</h1>
 	<br>
-	<form>
+	{!! Form::open(array('url' => '/profile/store','method' => 'get')) !!}
+
 	  <div class="form-group">
-	    <label for="">First Name</label>
-	    <input type="" class="form-control" id="" >
+	  	{{ Form::label("First Name :", null, ['class' => 'control-label']) }}
+	    
+	    {{Form::text("firstname", 
+             old("firstname") ? old("firstname") : (!empty($user) ? $user->firstname : null),
+             [
+                "class" => "form-control",
+                "placeholder" => "First Name",
+             ])
+		}}
+	    
 	  </div>
 
 	  <div class="form-group">
-	    <label for="">Last Name</label>
-	    <input type="" class="form-control" id="" >
+	  	{{ Form::label("Last Name :", null, ['class' => 'control-label']) }}
+	    
+	    {{Form::text("lastname", 
+             old("lastname") ? old("lastname") : (!empty($user) ? $user->lastname : null),
+             [
+                "class" => "form-control",
+                "placeholder" => "Last Name",
+             ])
+		}}
+	    
 	  </div>
 
 	  <div class="form-group">
-	    <label for="">Gender</label>
-	    <input type="" class="form-control" id="" >
+	  	{{ Form::label("Gender :", null, ['class' => 'control-label']) }}
+	    
+	    {{Form::text("gender", 
+             old("gender") ? old("gender") : (!empty($user) ? $user->gender : null),
+             [
+                "class" => "form-control",
+                "placeholder" => "Gender",
+             ])
+		}}
+	    
 	  </div>
 
 	  <div class="form-group">
-	    <label for="">Zip Code</label>
-	    <input type="" class="form-control" id="" >
+	  	{{ Form::label("Zip Code :", null, ['class' => 'control-label']) }}
+	    
+	    {{Form::text("zipcode", 
+             old("zipcode") ? old("zipcode") : (!empty($user) ? $user->zipcode : null),
+             [
+                "class" => "form-control",
+                "placeholder" => "Zip Code",
+             ])
+		}}
+	    
 	  </div>
 
-	  <button type="submit" class="btn btn-primary">Submit</button>
-	</form>
+	  {!! Form::button('Submit',[ 'type'=>'submit']) !!}
+
+
+	  
+	{!! Form::close() !!}
 
 @endsection
