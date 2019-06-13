@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     //
     function home(){
-    	/* $value = "lol";
+    	/* $value = "hello";
     	return view("home.home")->with("key",$value); */
         
         return view("home.home");
@@ -17,27 +17,29 @@ class HomeController extends Controller
 
     function store(){
         $profile = new Profile();
-        $profile->firstname = $_GET['firstname'];
-        $profile->lastname = $_GET['lastname'];
-        $profile->gender   = $_GET['gender'];
-        $profile->zipcode  = $_GET['zipcode'];
-        $result = $profile->save();
-        //die('lol');
+        $profile->firstname = $_POST['firstname'];
+        $profile->lastname = $_POST['lastname'];
+        $profile->gender   = $_POST['gender'];
+        $profile->zipcode  = $_POST['zipcode'];
+        $profile->save();
+        //$result = $profile->save();
+        //die('Hi!');
         //var_dump($result);
         //dd($result);
-        return redirect("profile");
+        return view("home.about");
+        //return redirect("profile");
         
     }
 
     function index(){
         $profiles =   Profile::all();
         $profiles =   Profile::paginate(8);
-    	//return view("home.profile")->with("profiles", $profiles);
-        return view('home.profile', ['profiles' => $profiles]);
+    	return view("home.profile")->with("profiles", $profiles);
+        //return view('home.profile', ['profiles' => $profiles]);
         //return view('customers.index',    ['customers' => $customers]);
     }
 
-    public function showAllCustomers()
+    /*public function showAllCustomers()
     {
         // $customers = Customer::where('age','>=',34)
         //                         ->where('type',"=",1)
@@ -47,12 +49,10 @@ class HomeController extends Controller
         $profile = Profile::paginate(8);
         return view('home.profile',
                     ['profile' => $profile]);
-    }
+    }*/
 
 
-    function about(){
-    	return view("home.about");
-    }
+   
 
     function contact(){
     	return view("home.contact");
@@ -70,13 +70,15 @@ class HomeController extends Controller
         return view("home.create");
     }
 
-    function edit(){
-        return view("home.edit");
+
+    function destroy($id){
+        $profile = Profile::find($id);
+        $profile = Profile::destroy($id);
+
+        return redirect("profile");
     }
 
-    function lol(){
-        return view("home.lol");
-    }
+
 
    /* function details(Profile $profile) {
         $dd($profile);
@@ -91,5 +93,29 @@ class HomeController extends Controller
         return view('profiles.show')->with('profile',$profile);
     }
     */
+
+
+    function edit($id){
+
+            $profile = Profile::find($id);
+            //dd($id);
+
+            // Check for correct user
+            return view('home.edit')->with('profile', $profile);
+            //dd($id);
+            //return view("home.edit");
+        }
+
+
+    public function update($id)
+        {
+
+            // Create Post
+            $profile = Profile::find($id);
+            $profile->firstname = input('firstname');
+            $profile->save();
+
+            return redirect('profile');
+        }
 
 }
