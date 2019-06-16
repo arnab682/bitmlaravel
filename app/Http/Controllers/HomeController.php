@@ -21,12 +21,30 @@ class HomeController extends Controller
         $profile->lastname = $_POST['lastname'];
         $profile->gender   = $_POST['gender'];
         $profile->zipcode  = $_POST['zipcode'];
-        $profile->save();
+        //$profile->save();
         //$result = $profile->save();
         //die('Hi!');
         //var_dump($result);
         //dd($result);
-        return view("home.about");
+         $this->validate($request, [
+          'select_file'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
+         ]);
+
+         $image = $request->file('select_file');
+         //$imgName = $image->getClientOriginalName();
+
+         $new_name = rand() . '.' . $image->getClientOriginalExtension();
+         //dd($new_name);
+         $image->move(public_path('images'), $new_name);
+          //die();
+         //return back();
+        //$about->upload = $new_name;
+         $profile->upload = $new_name;
+         $profile->save();
+
+
+        return view("home.create");
         //return redirect("profile");
         
     }

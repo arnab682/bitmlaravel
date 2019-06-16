@@ -60,7 +60,20 @@
 		    
 		  </div>
 
-	  {!! Form::button('Submit',[ 'type'=>'submit']) !!}
+		  <div class="form-group">
+		  	{{ Form::label("Picture :", null, ['class' => 'control-label']) }}
+		    
+		    <input type="file" name="select_file" />
+		    
+		  </div><br>
+
+	  {!! Form::button('Submit',
+	  		[ 
+
+	  			'type'=>'submit',
+	  			"class" => "btn btn-primary"
+	  		])
+	  !!}
 
 
 	  

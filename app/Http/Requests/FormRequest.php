@@ -24,16 +24,7 @@ class FormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'name' => 'required|max:20|min:5',
-            'picture' => 'required',
-            'date_of_birth' => 'required',
-            'gender' => 'required',
-            'hobby' => 'required',
-            'skills' => 'required',
-            'bio' => 'required|max:200|min:15',
-            'select_file'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
+            'name'=>'required|string',
         ];
     }
 }

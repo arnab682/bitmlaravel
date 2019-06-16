@@ -9,11 +9,11 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Material Design Bootstrap 
+  <link href="{{asset('css/mdb.min.css')}}" rel="stylesheet">-->
   <!-- Your custom styles (optional) -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="{{asset('css/style.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
   <!-- Start your project here-->
   <div style="height: 100vh">
     <div class="flex-center flex-column">
-
+      <br><br><br>
      @yield('content')
     </div>
   </div>

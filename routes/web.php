@@ -1,6 +1,30 @@
 <?php
 
-	Route::resource('profile', 'HomeController');
+/*	Route::resource('profile', 'HomeController');
+
+	//Home
+
+Route::get('/', 'HomeController@home');
+Route::get('/profile', 'HomeController@index');
+Route::post('/profile/store', 'HomeController@store');
+Route::get('/profile/update', 'HomeController@update');
+Route::get('/about', 'HomeController@about');
+Route::get('/contact', 'HomeController@contact');
+Route::get('/profile/details/{id}', 'HomeController@show');
+Route::get('/profile/create', 'HomeController@create');
+Route::get('/profile/edit/{id}', 'HomeController@edit');
+
+
+//About
+Route::get('/about', 'AboutController@about');
+Route::post('/about/store', 'AboutController@store');
+Route::post('about/uploadfile', 'AboutController@upload');*/
+
+
+
+
+
+
 
 // Route::get('/welcome', function () {
 //     return view('welcome');
@@ -25,23 +49,7 @@ Route::get('/portfolio', function () {
 });
 */
 
-/*Home*/
 
-Route::get('/', 'HomeController@home');
-Route::get('/profile', 'HomeController@index');
-Route::post('/profile/store', 'HomeController@store');
-Route::get('/profile/update', 'HomeController@update');
-Route::get('/about', 'HomeController@about');
-Route::get('/contact', 'HomeController@contact');
-Route::get('/profile/details/{id}', 'HomeController@show');
-Route::get('/profile/create', 'HomeController@create');
-Route::get('/profile/edit/{id}', 'HomeController@edit');
-
-
-//About
-Route::get('/about', 'AboutController@about');
-Route::post('/about/store', 'AboutController@store');
-Route::post('about/uploadfile', 'AboutController@upload');
 
 
 
@@ -49,8 +57,7 @@ Route::post('about/uploadfile', 'AboutController@upload');
 
 //form
 
-//Route::resource('forms', 'FormController');
-
+Route::resource('form', 'FormController');
 
 
 

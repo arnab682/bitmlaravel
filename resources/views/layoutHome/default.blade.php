@@ -10,16 +10,18 @@
 	        </div>
 	    </div>
 	    
-	    <div class="row">
+	    <div class="row col-12">
 			  <div class="col-3">
 			  		
-			  		<div class="card" style="width: 18rem; margin-right: 6px; ">
+			  		<div class="card col-12" style="width: 18rem; margin-right: 6px; ">
 					  
 					  @include('elements.leftManu')
 
-					</div>	
-			    
+					</div>
+					
+		    
 			  </div>
+			  <div class=""></div>
 			  <div class="col-9">
 			      <div class="card-header">
                     Featured

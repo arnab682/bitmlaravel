@@ -42,27 +42,25 @@ class AboutController extends Controller
 	     return back()->with('success', 'Image Uploaded Successfully')->with('path', $new_name);
     }
 
-    /* function store(){
-     	//dd()
-        $about = new About();
-        $about->picture = $_POST['picture'];
-        //dd($about->picture);
-        $about->save();
-        return view("home.about");
-    }
 
     public function uploadGalery(Request $request){
+
+    	$about = new About();
       $this->validate($request, [
-        'file' => 'required|image|mimes:jpeg,png,jpg,bmp,gif,svg|max:2048',
+        'select_file' => 'required|image|mimes:jpeg,png,jpg,bmp,gif,svg|max:2048',
       ]);
-      if ($request->hasFile('file')) {
-        $image = $request->file('file');
+      if ($request->hasFile('select_file')) {
+        $image = $request->file('select_file');
         $name = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/storage/galeryImages/');
+        $destinationPath = public_path('\storage\images');
+        //dd($destinationPath);
         $image->move($destinationPath, $name);
-        $this->save();
+
+        $about->upload = $name;
+
+        $about->save();
         return back()->with('success','Image Upload successfully');
       }
 
-    }*/
+    }
 }

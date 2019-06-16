@@ -2,95 +2,108 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Form;
+use App\Http\Requests\FormRequest;
 use Illuminate\Http\Request;
-use App\Form;
 
 class FormController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {   
+        //$form = new Form();
+        //$forms = $form->all();
+        $forms = Form::all();
+        return view('form.index', compact('forms'));
+    }
 
-    public function index(Request $request)
-	   {
-			//dd($request->all());
-	       return view('forms.index', compact('forms'));
-	   }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
-		{
-		   return view('forms.create');
-		}
+    {
+        return view('form.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [        
+            'name'=>'required|string',
+         ]);
+        $form = new Form();
+        $form->name = $_POST['name'];
+        $form->save();
+
+        return back();
+    }
+
+    /**
+
+        $this->validate($request, [
+          
+
+         ]);
 
 
-	public function show(Form $form)//route model binding
-	   {
-	//        $user = Profile::findOrFail($id);
-	//        dd($profile);
-	       return view('forms.show', compact('form'));
-	   }
+     * Display the specified resource.
+     *
+     * @param  \App\Model\Form  $form
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Form $form)
+    {
+        //dd($form);
 
-	public function edit(Profile $form)
-	   {
-	       return view('forms.edit', compact('form'));
-	   }
+        return view('form.show', compact('form'));
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Model\Form  $form
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Form $form)
+    {
+        return view('form.edit', compact('form'));
+    }
 
-	public function store(FormRequest $request)
-		{
-		   try{
-		       $data = $request->except('picture', 'skills', 'hobby');
-		       if($request->hasFile('picture')){
-		           $data['picture'] = $this->uploadImage($request->picture, $request->name);
-		       }
-		       $data['skills'] = serialize($request->skills);
-		       $data['hobby'] = serialize($request->hobby);
-		       Profile::create($data);
-		       return redirect()->route('forms.index')->withStatus('Created Successfully!');
-		   }catch (QueryException $exception){
-		       return redirect()->back()->withInput()->withErrors($exception->getMessage());
-		   }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\Form  $form
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Form $form)
+    {
+        $data = $request->all();
+        dd($data);
+    }
 
-		}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Model\Form  $form
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Form $form)
+    {
+        //dd($form);        
+        $form->delete();
 
-		private function uploadImage($file, $title)
-		   {
-		       $extension = $file->getClientOriginalExtension();
-		       $fileName = date('y-m-d') . '_' . time() . '_' . $title . '.' . $extension;
-		//        $file->move(storage_path('app/public/products/'), $fileName);
-		       Image::make($file)->resize(300, 300)->save(storage_path('app/public/users/') . $fileName);
-		       return $fileName;
-		   }
-
-
-
-	public function update(Request $request, Form $form)
-	   {
-	       try{
-	           $data = $request->except('picture', 'skills', 'hobby');
-	           if($request->hasFile('picture')){
-	               $data['picture'] = $this->uploadImage($request->picture, $request->name);
-	           }else{
-	               $data['picture'] = $form>picture;
-	           }
-	           $data['skills'] = serialize($request->skills);
-	           $data['hobby'] = serialize($request->hobby);
-	           $form>update($data);
-	           return redirect()->route('forms.index')->withStatus('Updated Successfully !');
-	       }catch (QueryException $exception){
-	           return redirect()->back()->withInput()->withErrors($exception->getMessage());
-	       }
-	   }
-
-
-	public function destroy(Form $form)
-	   {
-	       try{
-	           $form->delete();
-	           return redirect()->route('forms.index')->withStatus('Deleted Successfully !');
-	       }catch (QueryException $exception){
-	           return redirect()->back()->withInput()->withErrors($exception->getMessage());
-	       }
-	   }
-
-
-
+        //return back();
+    }
 }
