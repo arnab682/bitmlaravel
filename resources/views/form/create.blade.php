@@ -1,4 +1,4 @@
-@extends('layout.default')
+@extends('layoutHome.default')
 
 @section('content')
 
@@ -48,8 +48,7 @@
 
 		<div class="form-group">
 				<label>Address :</label>
-				<textarea name="description" rows="1" cols="20">Your Address...
-				</textarea>
+				<textarea name="description" rows="1" cols="20" placeholder="Your Address..."></textarea>
 		</div>
 
 		<div class="form-group">

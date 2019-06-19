@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Form;
-use App\Http\Requests\FormRequest;
-use Illuminate\Database\QueryException;
+use App\Model\Slider;
 use Illuminate\Http\Request;
 
-class FormController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,11 @@ class FormController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        //$form = new Form();
-        //$forms = $form->all();
-        $forms = Form::all();
-        return view('form.index', compact('forms'));
+    {
+        
+        $sliders = Slider::all()->sortByDesc('id');;
+        //dd($slides);
+        return view('slider.index', compact('sliders'));
     }
 
     /**
@@ -29,7 +27,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        return view('form.create');
+        return view('slider.create');
     }
 
     /**
@@ -43,19 +41,21 @@ class FormController extends Controller
         try{
 
             $this->validate($request, [        
-                'name'=>'required|string',
+                'title'=>'required|string',
+
              ]);
-            $form = new Form();
-            $form->name = $_POST['name'];
-            $form->save();
+            $slider = new Slider();
+            $slider->title = $_POST['title'];
+            $slider->description = $_POST['description'];
+            $slider->save();
 
              //return redirect()->route('labs.index')->withMessage('Lab is Inserted Successfully.');
-            return redirect()->route('form.index')->with('message','Submit is Inserted Successfully.');
+            return redirect()->route('slider.index')->with('message','Submit is Inserted Successfully.');
 
         }catch(QueryException $e){
 
              return redirect()
-                ->route('form.create')
+                ->route('slider.create')
                 ->withInput()
                 ->withErrors($e->getMessage());
         }
@@ -64,62 +64,51 @@ class FormController extends Controller
     }
 
     /**
-
-        $this->validate($request, [
-          
-
-         ]);
-
-
      * Display the specified resource.
      *
-     * @param  \App\Model\Form  $form
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Form $form)
+    public function show(Slider $slider)
     {
-        //dd($form);
-
-        return view('form.show', compact('form'));
+        return view('slider.show', compact('slider'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Form  $form
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Form $form)
+    public function edit(Slider $slider)
     {
-        return view('form.edit', compact('form'));
+        return view('slider.edit', compact('slider'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Form  $form
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Form $form)
+    public function update(Request $request, Slider $slider)
     {
         $data = $request->all();
-        $form->update($data);
 
-        return redirect()->route('form.index')->with('message','Submit is Inserted Successfully.');
+        $slider->update($data);
+        return redirect()->route('slider.index')->with('message','Submit is Inserted Successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Form  $form
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Form $form)
+    public function destroy(Slider $slider)
     {
-        //dd($form);        
-        $form->delete();
-        return redirect()->route('form.index')->with('message','Submit is Inserted Successfully.');
-        //return back();
+        $slider->delete();
+        return redirect()->route('slider.index')->with('message','Submit is Inserted Successfully.');
     }
 }

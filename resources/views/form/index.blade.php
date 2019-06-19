@@ -1,4 +1,4 @@
-@extends('layout.default')
+@extends('layoutHome.default')
 
 @section('content')
 
@@ -23,9 +23,17 @@
           <td>{{$form['phone']}}</td>
           <td>{{$form['photo']}}</td>
           <td><a href="form/{{$form->id}}/edit">Edit</a> | 
-          	<form action="/form/15" method="DELETE">@csrf
-          		<button type="submit">X</button>
-          	</form></td>
+
+          	{!! Form::open(array('url' => 'form/{{$form->id}}','method' => 'DELETE')) !!}
+				      <button type="submit" class="btn btn-primary">Delete</button>
+			      {!! Form::close() !!}
+
+            | <form action="{{route('form.destroy', $form->id)}}"       method="post">
+                @csrf @method('delete')
+                <button type="submit" class="btn btn-outline-info">X</button>
+              </form>
+			
+		  </td>
       </tr>
  	@endforeach
     </table>

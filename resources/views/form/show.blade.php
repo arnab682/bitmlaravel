@@ -1,4 +1,4 @@
-@extends('layout.default')
+@extends('layoutHome.default')
 
 @section('content')
 
@@ -22,7 +22,11 @@
 						<td>{{$form->email}}</td>
 						<td>{{$form->phone}}</td>
 						<td>{{$form->Photo}}</td>
-						<td>Edit | Delete</td>
+						<td>Edit | Delete
+							<form action="{{asset('form/15')}}" method="DELETE">@csrf
+          						<button type="submit">X</button>
+          					</form>
+						</td>
 					</tr>
 				</table>
 			</div>

@@ -1,6 +1,6 @@
 <?php
 
-/*	Route::resource('profile', 'HomeController');
+	Route::resource('profile', 'HomeController');
 
 	//Home
 
@@ -18,7 +18,7 @@ Route::get('/profile/edit/{id}', 'HomeController@edit');
 //About
 Route::get('/about', 'AboutController@about');
 Route::post('/about/store', 'AboutController@store');
-Route::post('about/uploadfile', 'AboutController@upload');*/
+Route::post('about/uploadfile', 'AboutController@upload');
 
 
 
@@ -59,7 +59,9 @@ Route::get('/portfolio', function () {
 
 Route::resource('form', 'FormController');
 
+//Slider
 
+Route::resource('slider', 'SliderController');
 
 
 
