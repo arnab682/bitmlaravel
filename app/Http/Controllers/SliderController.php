@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SliderRequest;
 use App\Model\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class SliderController extends Controller
 {
@@ -14,9 +16,9 @@ class SliderController extends Controller
      */
     public function index()
     {
-        
-        $sliders = Slider::all()->sortByDesc('id');;
-        //dd($slides);
+
+//        $sliders = Slider::latest()->get();
+        $sliders=Slider::all();
         return view('slider.index', compact('sliders'));
     }
 
@@ -36,31 +38,34 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
+
         try{
+            //dd($request->input());
+            if($request->hasFile('image')) {
+                $data = $request->all();
+                $fileName = $request->title.'-'.$request->image->getClientOriginalName();
+                $request->image->move(public_path('/images/'), $fileName);
+                $data['image']=$fileName;
+            }
+            else{
+                $data['image'] = null;
+            }
+            //dd($data);
+            Slider::create($data);
 
-            $this->validate($request, [        
-                'title'=>'required|string',
-
-             ]);
-            $slider = new Slider();
-            $slider->title = $_POST['title'];
-            $slider->description = $_POST['description'];
-            $slider->save();
-
-             //return redirect()->route('labs.index')->withMessage('Lab is Inserted Successfully.');
-            return redirect()->route('slider.index')->with('message','Submit is Inserted Successfully.');
+            //return redirect()->route('labs.index')->withMessage('Lab is Inserted Successfully.');
+            return redirect()->route('slider.index')->with('message','Slider is Inserted Successfully.');
 
         }catch(QueryException $e){
 
-             return redirect()
+            return redirect()
                 ->route('slider.create')
                 ->withInput()
                 ->withErrors($e->getMessage());
         }
 
-        
     }
 
     /**
@@ -71,7 +76,8 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        return view('slider.show', compact('slider'));
+//        $slider=Slider::findOrfail($id);
+        return view('slider.show',compact('slider'));
     }
 
     /**
@@ -82,7 +88,9 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        return view('slider.edit', compact('slider'));
+//        $slider=Slider::findOrfail($id);
+        return view('slider.edit',compact('slider'));
+
     }
 
     /**
@@ -92,12 +100,39 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slider $slider)
+    public function update(SliderRequest $request, Slider $slider)
     {
-        $data = $request->all();
+        try {
 
-        $slider->update($data);
-        return redirect()->route('slider.index')->with('message','Submit is Inserted Successfully.');
+//            $slider = Slider::findOrFail($id);
+            $data = $request->all();
+            $oldpath=public_path('picture/' . $slider->image);
+
+            if($request->hasFile('image')){
+                $image=$request->file('image');
+                $filename=time(). '.' .$image->getClientOriginalExtension();
+                $location=public_path('/picture/');
+                $image->move($location, $filename);
+                $data['image']=$filename;
+
+            }
+            else if($oldpath)
+            {
+                $data['image']=$slider->image;
+            }
+
+            $slider->update($data);
+            return redirect('slider')->with('message','Slider Updated !');
+        }
+        catch(QueryException $e){
+
+            return redirect()
+                ->route('slider.create')
+                ->withInput()
+                ->withErrors($e->getMessage());
+        }
+
+
     }
 
     /**
@@ -108,7 +143,15 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        $slider->delete();
-        return redirect()->route('slider.index')->with('message','Submit is Inserted Successfully.');
+        try{
+//            $slider=Slider::findOrFail($id);
+
+            $slider->delete();
+            return redirect()->route('slider.index')->with('message','Slider is Deleted Successfully.');
+        }catch(QueryException $e){
+            return redirect()
+                ->route('slider.index')
+                ->withErrors($e->getMessage());
+        }
     }
 }

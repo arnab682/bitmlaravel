@@ -44,10 +44,37 @@ class FormController extends Controller
 
             $this->validate($request, [        
                 'name'=>'required|string',
+                'password' => ['required', 
+                   'min:6', 
+                   'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 
+                   'confirmed'],
+                'dob'=>'required|string',
+                'description'=>'required|string',
              ]);
             $form = new Form();
-            $form->name = $_POST['name'];
+
+            /*$form->name = $_POST['name'];
+            $form->password = $_POST['password'];
+            $form->date_of_birth = $_POST['dob'];
+            $form->description = $_POST['description'];
+            //$form->skill = $_POST['dropdown'];
+            //$form->gender = $_POST['gender'];
+            //$form->skill = $request->dropdown;
+            $form->save();*/
+
+            $form->name = $request->name;
+            $form->password = $request->password;
+            $form->date_of_birth = $request->dob;
+            $form->description = $request->description;
+            
             $form->save();
+
+
+            //$data = $request->all();
+            //dd($data);
+            //Form::create($data);
+
+            
 
              //return redirect()->route('labs.index')->withMessage('Lab is Inserted Successfully.');
             return redirect()->route('form.index')->with('message','Submit is Inserted Successfully.');

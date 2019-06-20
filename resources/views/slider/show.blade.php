@@ -1,42 +1,33 @@
 @extends('layoutHome.default')
 
+
 @section('content')
 
-	<div class="content">
-		<form action="/form" method="post" enctype="multipart/form-data">@csrf
+    <div class="card">
 
-			<div class="form-group">
-				<table class="table table-bordered">
-					
-			        @php
-			        $sl = 0;
-			        @endphp
+        <dl>
+            <dt>ID</dt>
+            <dd>{{$slider->id}}</dd>
 
-			         <dl>
-			            <dt>ID</dt>
-			            <dd>{{++$sl}}</dd>
+            <dt>Title</dt>
+            <dd>{{$slider->title}}</dd>
 
-			            <dt>Title</dt>
-			            <dd>{{$slider->title}}</dd>
+            <dt>Image</dt>
+            <dd> <img src="{{ asset('picture/'.$slider->image) }}" width="100" height="100"></dd>
 
-			            <dt>Desciption</dt>
-			            <dd>{{$slider->description}}</dd>
+            <dt>Caption</dt>
+            <dd>{{$slider->caption}}</dd>
 
-			            <dt>Photo</dt>
-			            <dd>{{$slider->photo}}</dd>
+            <dt>Created At</dt>
+            <dd>{{$slider->created_at}}</dd>
 
-			            <dt>Action</dt>
-			            <dd>
-			            	<a href="{{route('slider.edit', $slider->id)}}">Edit</a> | 
-							<form action="" method="DELETE">@csrf
-          						<button type="submit">X</button>
-          					</form>
-			            </dd>
-			        </dl>
-				</table>
-			</div>
+            <dt>Updated At</dt>
+            <dd>{{$slider->updated_at}}</dd>
+        </dl>
 
-		</form>
-	</div>
+    </div>
+@endsection
 
+@section('sidebar')
+    n/a
 @endsection

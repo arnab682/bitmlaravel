@@ -33,6 +33,7 @@ class AboutController extends Controller
 	     $new_name = rand() . '.' . $image->getClientOriginalExtension();
 	     //dd($new_name);
 	     $image->move(public_path('images'), $new_name);
+       //dd(public_path('storage/images'));
 	      //die();
 	     //return back();
 	    //$about->upload = $new_name;

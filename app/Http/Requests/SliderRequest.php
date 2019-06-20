@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FormRequest extends FormRequest
+class SliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,7 @@ class FormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string',
-            'password' => ['required', 
-               'min:6', 
-               'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 
-               'confirmed'],
-            'dob'=>'required|string',
-            'description'=>'required|string',
+            
         ];
     }
 }

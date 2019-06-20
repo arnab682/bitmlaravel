@@ -22,7 +22,7 @@
 		<div class="form-group">
 				<label>Gender :</label>
 				<input type="radio" name="gender" checked value="1">Male
-				<input type="radio" name="gender" value="1">Female
+				<input type="radio" name="gender" value="2">Female
 		</div>
 
 		<div class="form-group">
@@ -41,8 +41,9 @@
 		<div class="form-group">
 				<label>Skill :</label>
 				<select name = "dropdown" style="width: 200px">
-		            <option name="skil" value = "Maths" selected>Maths</option>
-		            <option name="skill" value = "Physics">Physics</option>
+					<option selected disabled value="0">Selected Skill</option>
+		            <option value = "1" >Maths</option>
+		            <option value = "2">Physics</option>
 		        </select>
 		</div>
 
