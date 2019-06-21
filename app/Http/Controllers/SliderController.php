@@ -154,4 +154,18 @@ class SliderController extends Controller
                 ->withErrors($e->getMessage());
         }
     }
+
+
+
+
+
+    public function display(){
+        
+        //return 'lol';
+        $sliders = Slider::all();
+        //dd($data);
+        return view('slider.home', compact('sliders'));
+    }
+
+
 }

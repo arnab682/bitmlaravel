@@ -64,6 +64,10 @@ Route::resource('form', 'FormController');
 Route::resource('slider', 'SliderController');
 
 
+//SliderShow
+Route::get('/sliderShow', 'SliderController@display');
+
+
 
 
 

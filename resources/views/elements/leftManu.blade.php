@@ -9,6 +9,7 @@
 	    <li class="list-group-item"><a href="{{url('contact')}}">Contact</a></li>
 	    <li class="list-group-item"><a href="{{route('form.index')}}">Form</a></li>
 	    <li class="list-group-item"><a href="{{route('slider.index')}}">Slider</a></li>
+	    <li class="list-group-item"><a href="{{url('/sliderShow')}}">Slider Show</a></li>
 	  </ul>
 	  <div class="card-body">
 	    <a href="#" class="card-link">Card link</a>
