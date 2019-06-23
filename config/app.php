@@ -174,6 +174,9 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        //resize-image-laravel-using-intervention-image-library
+        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -237,6 +240,9 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        //Image api
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -17,7 +17,7 @@
       @foreach($sliders as $slider)
 
 
-        <div class="carousel-item {{$active}}">
+        <div class="carousel-item {{$active}}" style="height: 404px; width: 740px;"> 
           <a href="{{$slider->link}}">
           <img src="{{asset('/images')}}/{{$slider->image}}" class="d-block w-100" alt="..."></a>
           <div class="carousel-caption d-none d-md-block">

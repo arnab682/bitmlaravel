@@ -1,6 +1,6 @@
 <?php
 
-	Route::resource('profile', 'HomeController');
+Route::resource('profile', 'HomeController');
 
 	//Home
 
@@ -67,6 +67,11 @@ Route::resource('slider', 'SliderController');
 //SliderShow
 Route::get('/sliderShow', 'SliderController@display');
 
+
+
+//Image Api
+Route::resource('/image', 'ImageController');
+//Route::get('/images', 'ImageController@index');
 
 
 
