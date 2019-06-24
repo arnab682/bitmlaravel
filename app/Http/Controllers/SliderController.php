@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 use App\Http\Requests\SliderRequest;
 use App\Model\Slider;
 use Illuminate\Http\Request;
@@ -165,6 +168,21 @@ class SliderController extends Controller
         $sliders = Slider::all();
         //dd($data);
         return view('slider.home', compact('sliders'));
+    }
+
+    public function pdf(){
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML('<h1>Hello world!</h1>');
+        $mpdf->Output();
+    }
+
+    public function xl(){
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('hello world.xlsx');
     }
 
 

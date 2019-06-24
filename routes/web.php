@@ -60,7 +60,8 @@ Route::get('/portfolio', function () {
 Route::resource('form', 'FormController');
 
 //Slider
-
+Route::get('slider/pdf', 'SliderController@pdf')->name('slider.pdf');
+Route::get('slider/xl', 'SliderController@xl')->name('slider.xl');
 Route::resource('slider', 'SliderController');
 
 

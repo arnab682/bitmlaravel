@@ -17,7 +17,10 @@
         </div>
     @endif
 
-    <div><a href="{{route('slider.create')}}">Add New</a></div>
+    <div><a href="{{route('slider.create')}}" class="btn btn-success">Add New</a>
+        <a href="{{route('slider.pdf')}}" class="btn btn-primary">PDF</a>
+        <a href="{{route('slider.xl')}}" class="btn btn-info">XL</a>
+    </div>
     <table class="table table-bordered">
         <tr>
             <th>Sl.</th>
