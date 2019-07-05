@@ -76,6 +76,8 @@ Route::resource('/image', 'ImageController');
 
 
 
+Route::resource('fullForm', 'FullFormController');
+
 
 
 

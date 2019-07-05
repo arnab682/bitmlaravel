@@ -18,8 +18,19 @@ class FormController extends Controller
     {   
         //$form = new Form();
         //$forms = $form->all();
-        $forms = Form::all();
-        return view('form.index', compact('forms'));
+        
+        try{
+
+            $forms = Form::all();
+            return view('form.index', compact('forms'));
+        
+        }catch(QueryException $e){
+
+            return redirect()
+                ->route('404_blade')
+                ->withInput()
+                ->withErrors($e->getMessage());
+        }
     }
 
     /**
@@ -42,15 +53,15 @@ class FormController extends Controller
     {
         try{
 
-            $this->validate($request, [        
-                'name'=>'required|string',
-                'password' => ['required', 
-                   'min:6', 
-                   'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 
-                   'confirmed'],
-                'dob'=>'required|string',
-                'description'=>'required|string',
-             ]);
+            // $this->validate($request, [        
+            //     'name'=>'required|string',
+            //     'password' => ['required', 
+            //        'min:6', 
+            //        'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 
+            //        'confirmed'],
+            //     'dob'=>'required|string',
+            //     'description'=>'required|string',
+            //  ]);
             $form = new Form();
 
             /*$form->name = $_POST['name'];
@@ -67,6 +78,7 @@ class FormController extends Controller
             $form->date_of_birth = $request->dob;
             $form->description = $request->description;
             
+            //dd($form);
             $form->save();
 
 
