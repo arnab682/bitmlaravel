@@ -17,17 +17,17 @@
 
 		<div class="form-group">
 			<label>Name :</label>
-			<input type="text" name="name">
+			<input type="text" name="name" value="{{$fullForm->name}}">
 		</div>
 
 		<div class="form-group">
 	        <label for="exampleInputFile">File input</label>
-	        <input type="file" name="profile_image" id="exampleInputFile">
+	        <img src="">
 	    </div>
 
 		<div class="form-group">
 	        <label for="inputDateofBirth">Date of Birth :</label>
-	        <input type="date" class="form-control" id="inputDateofBirth" name="dob" style="width: 200px">
+	        <input type="date" class="form-control" id="inputDateofBirth" name="dob" style="width: 200px" value="{{$fullForm->date}}">
 	    </div>
 
 		<div class="form-group">
@@ -56,24 +56,19 @@
 		<div class="checkbox">
 			<label>Hobby : </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox1" name="hobby[]" value="option1"> Travelling
+		      <input type="checkbox" id="inlineCheckbox1" name="hobby[]" value="option1"> 
 		    </label>
-		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox2" name="hobby[]" value="option2"> Swimming
-		    </label>
-		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox3" name="hobby[]" value="option3"> Eating
-		    </label>
+		    
 		</div>
 
 		<fieldset class="form-group">
 	    	<label for="exampleTextarea">About textarea</label>
-	    	<textarea class="form-control" id="exampleTextarea" rows="3" name="bio"></textarea>
+	    	<textarea class="form-control" id="exampleTextarea" rows="3" name="bio">{{$fullForm->bio}}</textarea>
 	  	</fieldset>
 
 		<fieldset class="form-group">
 		    <label for="exampleInputEmail1">Email address</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="arnab.das682@gmail.com">
 		    <small class="text-muted">We'll never share your email with anyone else.</small>
 		</fieldset>
 	    <fieldset class="form-group">
@@ -83,7 +78,7 @@
 
 	  	<div class="form-group">
         	<label>Single Checkbox :</label>
-		    <input type="checkbox" value="1" checked id="remember_me" name="remember_me">
+		    <input type="checkbox" value="1"  id="remember_me" name="remember_me">
 		    <label for="remember_me">Remember me</label>
 		</div>
 

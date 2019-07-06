@@ -189,4 +189,60 @@ class SliderController extends Controller
     }
 
 
+
+
+    public function activate(SliderRequest $request){
+
+        $slider = Slider::find($request->get('id'));
+        $data = ['is_active'=>1];
+        $slider->update($data);
+        return redirect()->route('slider.index')->with('message','Slider is activated Successfully.');
+    }
+
+    public function deactivate(SliderRequest $request){
+        $slider = Slider::find($request->get('id'));
+        $slider->update(['is_active'=>0]);
+        return redirect()->route('slider.index')->with('message','Slider is deactivated Successfully.');
+    }
+
+    public function downloadxl(){
+
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+        $sheet->setCellValue('A2', 'Hello World !');
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'.'helloworld'.'.xls"'); /*-- $filename is  xsl filename ---*/
+        header('Cache-Control: max-age=0');
+
+        //$Excel_writer->save('php://output');
+        $writer->save('php://output');
+    }
+
+    public function downloadpdf(){
+
+
+        try {
+            error_reporting(0);
+            app('debugbar')->disable();
+            $sliders=Slider::all();
+            //dd($sliders);
+            $html =  view('slider.downloadpdf', compact('sliders'))->render();
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->debug = true;
+            $mpdf->WriteHTML($html);
+            $mpdf->Output();
+           // $mpdf->Output(public_path().'/asdfsdf1.pdf','F');
+        } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception
+            //       name used for catch
+            // Process the exception, log, print etc.
+            echo $e->getMessage();
+        }
+
+    }
+
+
 }

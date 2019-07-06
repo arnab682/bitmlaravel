@@ -43,26 +43,26 @@
 		<div class="checkbox">
 			<label>Skills : </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox1" name="skills[]" value="option1"> English
+		      <input type="checkbox" id="inlineCheckbox1" name="skills[]" value="English"> English
 		    </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox2" name="skills[]" value="option2"> Bangla
+		      <input type="checkbox" id="inlineCheckbox2" name="skills[]" value="Bangla"> Bangla
 		    </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox3" name="skills[]" value="option3"> Japanish
+		      <input type="checkbox" id="inlineCheckbox3" name="skills[]" value="Japanish"> Japanish
 		    </label>
 		</div>
 
 		<div class="checkbox">
 			<label>Hobby : </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox1" name="hobby[]" value="option1"> Travelling
+		      <input type="checkbox" id="inlineCheckbox1" name="hobby[]" value="Travelling"> Travelling
 		    </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox2" name="hobby[]" value="option2"> Swimming
+		      <input type="checkbox" id="inlineCheckbox2" name="hobby[]" value="Swimming"> Swimming
 		    </label>
 		    <label class="checkbox-inline">
-		      <input type="checkbox" id="inlineCheckbox3" name="hobby[]" value="option3"> Eating
+		      <input type="checkbox" id="inlineCheckbox3" name="hobby[]" value="Eating"> Eating
 		    </label>
 		</div>
 

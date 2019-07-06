@@ -63,9 +63,10 @@ class FullFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $form)
+    public function edit(fullForm $fullForm)
        {
-           return view('fullForm.edit', compact('form'));
+          //dd($fullForm);
+          return view('fullForm.edit', compact('fullForm'));
        }
 
 

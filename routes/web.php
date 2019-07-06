@@ -60,8 +60,12 @@ Route::get('/portfolio', function () {
 Route::resource('form', 'FormController');
 
 //Slider
-Route::get('slider/pdf', 'SliderController@pdf')->name('slider.pdf');
-Route::get('slider/xl', 'SliderController@xl')->name('slider.xl');
+//Route::get('slider/pdf', 'SliderController@pdf')->name('slider.pdf');
+//Route::put('slider/activate','SliderController@activate')->name('myactivate');
+Route::put('slider/deactivate','SliderController@deactivate')->name('mydeactivate');
+Route::get('slider/downloadxl','SliderController@downloadxl')->name('mydownloadxl');
+Route::get('slider/downloadpdf','SliderController@downloadpdf')->name('mydownloadpdf');
+
 Route::resource('slider', 'SliderController');
 
 
